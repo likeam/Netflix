@@ -1,6 +1,9 @@
 // step 1 Server creating
 import express from "express";
 import dotenv from "dotenv";
+import databaseConnecton from "./utils/database";
+
+databaseConnecton();
 
 dotenv.config({
     path:".env"
