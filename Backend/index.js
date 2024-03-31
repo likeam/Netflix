@@ -1,7 +1,9 @@
 // step 1 Server creating
 import express from "express";
 import dotenv from "dotenv";
-import databaseConnecton from "./utils/database";
+import databaseConnecton from "./utils/database.js";
+import cookieParser from "cookie-parser";
+
 
 databaseConnecton();
 
@@ -11,8 +13,18 @@ dotenv.config({
 
 const app = express();
 
-const PORT = 8080;
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({extended: true}));
+{/*const corsOptons = {
+    origin: 'http://localhost:3000',
+    Credential: true
+}
+app.use(cors(corsOptons));
+app.use("/api/v1/user", userRoute); */}
 
-app.listen(PORT, () =>{
-    console.log(`Server listen at Port ${PORT}`)
+
+
+app.listen(process.env.PORT, () =>{
+    console.log(`Server listen at Port ${process.env.PORT}`)
 })
