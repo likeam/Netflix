@@ -1,4 +1,5 @@
-import { User } from "../models/useModel";
+import { User } from "../models/useModel.js";
+import  bcryptjs  from "bcrypt"
 
 export const Register = async (req, res) => {
     try {
@@ -16,10 +17,13 @@ export const Register = async (req, res) => {
                 sucess:false
             })
         }
+
+        const hashedPassword = await bcryptjs.hash(password, 16);
+
         await User.create({
             fullName,
             email,
-            password
+            password:hashedPassword
         });
 
         return res.status(201).json({

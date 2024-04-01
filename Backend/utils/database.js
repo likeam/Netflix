@@ -4,13 +4,13 @@ import dotenv from "dotenv";
 
 
 dotenv.config({
-    path: "../.env"
+    path: "./.env"
 })
 
 
 const databaseConnecton = () => {
   return (
-    mongoose.connect('mongodb+srv://likeam99:milto202@cluster0.eklsauv.mongodb.net/').then(() =>{
+    mongoose.connect(process.env.MONGO_URL).then(() =>{
         console.log("mongodb connected sucessfully")
     }).catch((error) => {
         console.log(error);
